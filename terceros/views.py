@@ -1,0 +1,50 @@
+from django.shortcuts import render
+from django.views import View
+from .models import ModelThird
+from .forms import thirdForms
+
+class SeeForm(View):
+    def get(self, request):
+        form = thirdForms()  # Instancia del formulario
+        data = {
+            'form':form
+        }
+        return render(request, 'components/forms/components-terceros.html', data)
+
+class SaveForm(View):
+    def post(self,request):
+        if request.method == 'POST':
+            #Obetener datos 
+            name =request.POST.get('name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            address = request.POST.get('address')
+            typeThird = request.POST.get('typeThird')
+            activo = request.POST.get('activo')
+            description = request.POST.get('description')
+            date_of_birth = request.POST.get('date_of_birth')
+            identity_document = request.POST.get('identity_document')
+            hora = request.POST.get('hora')
+
+            # Crea una nueva instancia de tu modelo y guarda los datos en la base de datos
+            newObject = ModelThird(
+                name = name,
+                email = email,
+                phone = phone,
+                address = address,
+                typeThird = typeThird,
+                activo = activo,
+                description = description,
+                date_of_birth = date_of_birth,
+                identity_document = identity_document,
+                hora = hora,
+            )
+            newObject.save()
+
+            # Redirigir a una pagina
+            return render(request,'dashboard/dashboard.html', {})
+            
+        else:
+            form = ModelThird()
+        return render(request, 'components/forms/components-terceros.html', {'form': form})
+   
