@@ -51,6 +51,9 @@ urlpatterns = [
 
     #myApp
     path('myApp/', include('myApp.urls')),
+
+    #practica
+    path('practica/', include('practica.urls')),
     
 ]
 

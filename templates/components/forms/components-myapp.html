@@ -1,16 +1,30 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load django_bootstrap5%}
+{% load crispy_forms_tags %}
 
 
 {% block contents %}
                         <div class="container">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="mb-3">
+                                    <div class="mb-5">
                                         <h2>Formulario con django_bootstrap5</h2>
+                                        <div class="container">
+                                            {% bootstrap_messages %}
+                                            {% if messages %}
+                                                {% for message in messages %}
+                                                    {% if message.tags == 'success' %}
+                                                        <div class="alert alert-success {% if 'form-id' in message.extra_tags %} form-id {% endif %}" role="alert">
+                                                            {{ message }}
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
                                             <form action="{% url 'SaveFormMyApp' %}"  method='post' > 
                                                 {% csrf_token %}
+                                                {% bootstrap_form_errors form %}
 
                                                 <div class="row">
                                                     <div class="form-group col-md-6 mb-0">
@@ -41,7 +55,8 @@
                                                     </div>
                                                 </div>
                                                 {% bootstrap_button button_type="submit" content="Send" button_class="btn btn-warning btn-xs  " %}
-                                        </form>
+                                                
+                                            </form>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,33 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% load django_bootstrap5%}
+
+{% block contents%}
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h2>Formulario practica </h2> 
+                                        <form action="{% url 'productoCreate' %}" method="post" >
+                                            {% csrf_token %}
+                                            {{ formset.management_form }}
+                                            {% for form in formset %}
+                                                <div class="form-group">
+                                                    {{ form.nombre.label_tag }}
+                                                    {{ form.nombre }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.cantidad.label_tag }}
+                                                    {{ form.cantidad }}
+                                                </div>
+                                            {% endfor %}
+                                            <input type="submit" class="btn btn-primary" value="Guardar">
+                                            
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+{% endblock %}
