@@ -38,7 +38,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.10.10', 'p-v3.test']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,14 +52,16 @@ INSTALLED_APPS = [
     
     # Local App
     'layout',
+    'formbootstrap',
     
     # Crispy Forms
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
     'terceros',
     'practica',
     'myApp',    
     'pages',
+    'formusers',
     'modelos',
     'templates',
     'components',    
@@ -118,8 +119,10 @@ DATABASES = {
         'USER':'user_pv3',
         'PASSWORD': '40fDBFCsxZRoWtfU',
         'HOST': '192.168.10.10',        
+        'PORT': '3306',
     }
-}
+    }
+  
 
 
 # Password validation

@@ -1,8 +1,8 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load django_bootstrap5%}
-{% load crispy_forms_tags %}
 
+{% comment %} Usando django_bootstrap_form {% endcomment %}
 
 {% block contents %}
                         <div class="container">
@@ -11,7 +11,7 @@
                                     <div class="mb-5">
                                         <h2>Formulario con django_bootstrap5</h2>
                                         <div class="container">
-                                            {% bootstrap_messages %}
+                                           {% bootstrap_messages %} 
                                             {% if messages %}
                                                 {% for message in messages %}
                                                     {% if message.tags == 'success' %}
@@ -21,7 +21,7 @@
                                                     {% endif %}
                                                 {% endfor %}
                                             {% endif %}
-                                        </div>
+                                        </div> 
                                             <form action="{% url 'SaveFormMyApp' %}"  method='post' > 
                                                 {% csrf_token %}
                                                 {% bootstrap_form_errors form %}
@@ -54,8 +54,7 @@
                                                         {% bootstrap_field form.identity_document  %}
                                                     </div>
                                                 </div>
-                                                {% bootstrap_button button_type="submit" content="Send" button_class="btn btn-warning btn-xs  " %}
-                                                
+                                                {% bootstrap_button button_type="submit" content="Send" button_class="btn btn-warning btn-xs  " %} 
                                             </form>
                                     </div>
                                 </div>

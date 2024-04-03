@@ -55,5 +55,11 @@ urlpatterns = [
     #practica
     path('practica/', include('practica.urls')),
     
+    #formbootstrap
+    path('formbootstrap/', include('formbootstrap.urls')),
+    
+    #formusers
+    path('formusers/', include('formusers.urls')),
+    
 ]
 

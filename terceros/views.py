@@ -7,13 +7,14 @@ from .forms import ThirdForm
 class SeeForm(View):
     def get(self, request):
         form = ThirdForm()  # Instancia del formulario
+        show_alert = request.GET.get('alert')
         data = {
             'form':form
         }
         return render(request, 'components/forms/components-terceros.html', data)
 
 class SaveForm(View):
-    def post(self, request):  # Asegúrate de tener dos argumentos: self y request
+    def post(self, request):
         newObject = None
         if request.method == 'POST':
             form = ThirdForm(request.POST)
@@ -30,7 +31,7 @@ class SaveForm(View):
                 identity_document = request.POST.get('identity_document')
                 hora = request.POST.get('hora')
                 
-                # Crea una nueva instancia de tu modelo y guarda los datos en la base de datos
+                #Nueva instancia del modelo y guardar los datos en la base de datos
                 newObject = ModelThird.objects.create(
                     name=name,
                     email=email,

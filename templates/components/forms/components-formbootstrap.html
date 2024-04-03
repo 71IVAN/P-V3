@@ -1,0 +1,190 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block contents %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Bootstrap Form Controls</h5>                                    
+                                    <form action="{% url 'saveFormBootstrap' %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="mb-3">
+                                            <label for="name">Name</label>
+                                            <input type="text" id="name-id" name="name" class="form-control {% if form.errors.name %} o {% endif %}"  value="{{ form.name.value }}" required placeholder="Enter Your Name"/>
+                                            {% if form.errors.name %}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.errors.name %}
+                                                        {{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control {% if form.errors.email %} is-invalid {% endif %}"  value="{{ form.email.value }}" required placeholder="Enter Your Email"/>
+                                                {% if form.errors.email %}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.errors.email %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" id="phone-id" name="phone" class="form-control {% if form.errors.phone %} is-invalid {% endif %}"  value="{{ form.phone.value }}" required placeholder="Enter Your Phone Number"/>
+                                                {% if form.errors.phone %}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.errors.phone %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3 col-lg-12">
+                                            <label for="description">Description</label>
+                                            <textarea id="description" name="description" class="form-control" placeholder="Enter Your Description">{{ form.description.value }}</textarea>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="ide">Numero de identidad</label>
+                                                <input type="text" id="ide-id" name="ide" class="form-control {% if form.errors.ide %} is-invalid {% endif %}"  value="{{ form.ide.value }}" required placeholder="Enter Your IDE"/>
+                                                {% if form.errors.ide %}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.errors.ide %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="address">Address</label>
+                                                <input type="text" id="address-id" name="address" class="form-control {% if form.errors.address %} is-invalid {% endif %}"  value="{{ form.address.value }}" required placeholder="Enter Your Address"/>
+                                                {% if form.errors.address %}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.errors.address %}
+                                                            {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="activo">Activo</label>
+                                                <select class="form-select" id="activo" name="activo">
+                                                    <option value="si" {% if form.activo.value == 'si' %} selected {% endif %}>SI</option>
+                                                    <option value="no" {% if form.activo.value == 'no' %} selected {% endif %}>NO</option>
+                                                </select>
+                                            </div>
+                                        
+                                            <div class="mb-3 col-lg-6">
+                                                <label for="typethird">Tipo tercero</label>
+                                                <select class="form-select" id="typethird" name="typethird">
+                                                    <option value="employees" {% if form.typethird.value == 'employees' %} selected {% endif %}>Employees</option>
+                                                    <option value="customers" {% if form.typethird.value == 'customers' %} selected {% endif %}>Customers</option>
+                                                    <option value="providers" {% if form.typethird.value == 'providers' %} selected {% endif %}>Providers</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    <button type="submit" class="btn btn-success mb-3">Submit</button>
+                                        
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    {% comment %} <div  class="mb-3 " >
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name-id" name="name" class="form-control" placeholder="Enter Your Name" required/>
+                                        {% if form.errors.name %}
+                                        <div class="invalid-feedback">error</div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" required/>
+                                            {% if form.errors.email %}
+                                            <div class="invalid-feedback">error</div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="ide">Numero de identidad</label>
+                                            <input type="text" id="ide-id" name="ide" class="form-control"  placeholder="Enter Your IDE" required/>
+                                            {% if form.errors.ide %}
+                                            <div class="invalid-feedback">error</div>
+                                            {% endif %}                                        
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" id="phone-id" name="phone" class="form-control" placeholder="Enter Your Phone Number" required/>
+                                        {% if form.errors.phone %}
+                                        <div class="invalid-feedback">error</div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="description">Description</label>
+                                        <textarea id="description" name="description" class="form-control" placeholder="Enter Your Description" ></textarea>
+
+                                    </div>
+
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter Your Address" required/>
+                                        {% if form.errors.address %}
+                                        <div class="invalid-feedback">error</div>
+                                        {% endif %}
+                                    </div>
+                                   
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="activo">Activo</label>
+                                            <select class="form-select" id="activo" name="activo">
+                                                <option value="si">SI</option>
+                                                <option value="no">NO</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="typethird">Tipo tercero</label>
+                                            <select class="form-select" id="typethird" name="typethird">
+                                            <option value="employees">Employees</option>
+                                            <option value="customers">Customers</option>
+                                            <option value="providers">Providers</option>
+                                        </select>
+                                        </div>{% endcomment %}
