@@ -61,5 +61,10 @@ urlpatterns = [
     #formusers
     path('formusers/', include('formusers.urls')),
     
+    #ajax
+    path('ajax/', include('app_ajax.urls')),
+    
+    #appBootstrap
+    path('appBootstrap/', include('appBootstrap.urls')),
 ]
 

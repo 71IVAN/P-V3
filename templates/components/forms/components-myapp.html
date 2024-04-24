@@ -1,7 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load django_bootstrap5%}
-
 {% comment %} Usando django_bootstrap_form {% endcomment %}
 
 {% block contents %}
@@ -15,13 +14,13 @@
                                             {% if messages %}
                                                 {% for message in messages %}
                                                     {% if message.tags == 'success' %}
-                                                        <div class="alert alert-success {% if 'form-id' in message.extra_tags %} form-id {% endif %}" role="alert">
+                                                        <div class="alert alert-success" role="alert">
                                                             {{ message }}
                                                         </div>
                                                     {% endif %}
                                                 {% endfor %}
                                             {% endif %}
-                                        </div> 
+                                        </div>
                                             <form action="{% url 'SaveFormMyApp' %}"  method='post' > 
                                                 {% csrf_token %}
                                                 {% bootstrap_form_errors form %}
@@ -33,11 +32,13 @@
                                                     
                                                     <div class="form-group col-md-6 mb-0" >
                                                         {% bootstrap_field form.email %}
-                                                    </div>    
+                                                    </div>
+
                                                 </div>
                                                 <div class="mb-3">
                                                     {% bootstrap_field form.telefono placeholder='Ingrese el numero del celular'  %}
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="form-group col-md-6 mb-0">
                                                         {% bootstrap_field form.address placeholder='Ingrese su direccion' %}
@@ -46,6 +47,7 @@
                                                         {% bootstrap_field form.typeThird placeholder='Ingrese el tipo de tercero' %}
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="form-group col-md-6 mb-0">
                                                         {% bootstrap_field form.activo  %}
@@ -54,7 +56,14 @@
                                                         {% bootstrap_field form.identity_document  %}
                                                     </div>
                                                 </div>
-                                                {% bootstrap_button button_type="submit" content="Send" button_class="btn btn-warning btn-xs  " %} 
+                                                <div class="mb-3">
+                                                    <div class="form-group mt-0 mb-0">
+                                                        {% bootstrap_button button_type="submit" content="Send" button_class="btn btn-warning btn-xs"%}
+                                                    </div>
+                                                    <div class="form-group mb-0">    
+                                                        {% bootstrap_button button_type="submit" content="Edit" button_class="btn btn-warning btn-xs"%} 
+                                                </div>
+                                            </div>    
                                             </form>
                                     </div>
                                 </div>

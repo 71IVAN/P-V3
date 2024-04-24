@@ -2,11 +2,12 @@ from django import forms
 from .models import modeltest
 
 class myForm(forms.ModelForm):
-
+         
     class Meta:
         model = modeltest
         fields = '__all__'
         exclude = ['password']
+
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
         if len(nombre) <= 3:

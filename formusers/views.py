@@ -6,6 +6,7 @@ from django.views.generic import FormView
 from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
+from django.contrib import messages
 
 
 class DashboardView(LoginRequiredMixin, FormView):
@@ -40,15 +41,36 @@ class FormUserPost(LoginRequiredMixin, FormView):
         new_object.password = hashed_password
         new_object.date_joined = date_joined_default
         new_object.save()
+        
+        messages.success(self.request, 'Your form has been submitted successfully!')
+        print("Formulario guardado con exito")
 
         return super().form_valid(form)
     
-    def form_invalid(self, form):
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+# class UpdateUserView(LoginRequiredMixin, FormView):
+#         template_name = 'components/forms/components-formsuser.html'
+
+#         def edicionForm(self, request, form):
+#             form = form
+#             return render(request, {'form':form})
         
-        print("El formulario es invalido")
-        context = self.get_context_data(form=form)
-        
-        
-        context['error_message'] = "Hubo errores en el formulario"
-        
-        return self.render_to_response(context)
+    

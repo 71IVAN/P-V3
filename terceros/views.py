@@ -47,7 +47,7 @@ class SaveForm(View):
                 # Redirigir a una pagina
                 messages.success(request, 'Your form has been submitted successfully!')
                 return redirect('seeForm')
-            
         else:
             form = ThirdForm()
         return render(request, 'components/forms/components-terceros.html', {'form': form})
+ 

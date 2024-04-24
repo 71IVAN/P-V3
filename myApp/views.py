@@ -1,5 +1,6 @@
 from audioop import reverse
 from django.contrib import messages
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from myApp.forms import myForm
@@ -15,7 +16,7 @@ class seemyApp(FormView):
 class SaveForm(FormView):
     template_name = 'components/forms/components-myapp.html'
     form_class = myForm
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('seeMyForm')
 
     def form_valid(self, form):
         nombre = form.cleaned_data['nombre']        
@@ -30,9 +31,9 @@ class SaveForm(FormView):
         
         hashed_password = make_password(password)
         new_object = modeltest(
-            nombre = nombre,
+            nombre = nombre, 
             email = email,
-            telefono = telefono,
+            telefono = telefono, 
             address = address,
             typeThird = typeThird,
             activo = activo,
@@ -42,13 +43,28 @@ class SaveForm(FormView):
         new_object.save()
         
         if new_object:
-            messages.success(self.request, 'Your form has been submitted successfully!', extra_tags='form-id')
+            messages.success(self.request, 'Your form has been submitted successfully!')
         
         else:
-            messages.error(self.request, 'Your form has not been submitted successfully!', extra_tags='form-id')
+            messages.error(self.request, 'Your form has not been submitted successfully!')
         
         return super(SaveForm, self).form_valid(form)
 
 class goDashboard(FormView):
     template_name = 'dashboard/dashboard.html'
     form_class = myForm
+
+# class UpdateUserView(FormView):
+#     template_name = 'components/forms/components-formsuser.html'
+#     form_class = myForm
+
+#     def traerForm(self, request, form):
+#         form = self.form_class()
+#         return render(request, self.template_name, {'form': form})
+    
+#     def actualizarForm(self, request, form):
+#         form = self.form_class(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(request, {'form':form})
+        

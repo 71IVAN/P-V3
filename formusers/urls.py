@@ -5,4 +5,5 @@ urlpatterns = [
 path ('formusers',FormUsersView.as_view(),name='seeFormusers'),
 path('saveformusers',FormUserPost.as_view(),name='saveFormusers'),
 path('dashboard',DashboardView.as_view(),name='dashboard'),
+# path('actualizar',UpdateUserView.as_view(),name='actualizar'),
 ]

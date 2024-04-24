@@ -46,18 +46,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', #
     'django_extensions',
     'django_bootstrap5',
+    'jquery',
     
     # Local App
     'layout',
     'formbootstrap',
-    
+    'appBootstrap',
     # Crispy Forms
     'crispy_forms',
     'crispy_bootstrap5',
     'terceros',
+    'app_ajax',
     'practica',
     'myApp',    
     'pages',
@@ -72,6 +74,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
 ]
+
+AJAX_ENABLED = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

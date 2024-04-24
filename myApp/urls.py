@@ -6,3 +6,4 @@ urlpatterns = [
     path('guardarform', SaveForm.as_view(),name="SaveFormMyApp"),
     path('dashboard', goDashboard.as_view(),name="goDashboard"),
 ]
+ 

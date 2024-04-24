@@ -27,7 +27,6 @@
     {% endblock css %}
 </head>
 
-
 <body data-sidebar="dark">
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -98,13 +97,18 @@
             <script src="{% static 'libs/metismenu/dist/metisMenu.min.js' %}"></script>
             <script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
             <script src="{% static 'libs/node-waves/dist/waves.min.js' %}"></script>
-
+            <script src="{% static 'js/custom.js' %}"></script>
 
             {% block extra_javascript %}
             {% endblock %}
 
             <script src="{% static 'js/app.js' %}"></script>    
             {% endblock javascript %}
+
+            {% block extrahead %}
+                <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+            {% endblock %} 
+            
         </body>
 
     </html>

@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% comment %} {% block extra_css %}
+    <style>
+        a.test {
+            font-weight: bold;
+            color: blue;
+        }
+        h1.colured {
+            font-weight: bold;
+            color: hotpink;
+        }
+    </style>
+{% endblock %} {% endcomment %}
+
+{% block contents %}
+                    {% comment %} <div class="container">
+                            <div>
+                                <h1 class ="colured">¡Hola Estamos en FU city!</h1>
+                                <h1>¡Hola Estamos en FU city Dos!</h1>
+                                <p>Este es un ejemplo simple de un template de Django.</p>
+                                <p>Estamos trabajando con jquery</p>
+                            </div>
+
+                            <h6>Link: </h6>
+                            <br>
+                            <a href="http://jquery.com/">jquery</a>   
+                            <br>
+                            <a href="http://google.com/">google.com</a>
+                            <br>
+                            <a  href="http://gmail.com/">gmail.com</a>   
+                            <br>
+                            <a href="http://facebook.com/">facebook.com</a> 
+                    </div> {% endcomment %}
+                    <h1>¡Hola Estamos con jquery!</h1>
+                    <button class="btn btn-primary btn-button">click</button>
+                    <br>
+                    <br>
+                    <br>
+
+                    <ul>
+                        <li class="il-test">Uno</li>
+                        <li class="il-test">Dos</li>
+                        <li class="il-test">Tres</li>
+                    </ul>
+
+
+{% endblock %}
