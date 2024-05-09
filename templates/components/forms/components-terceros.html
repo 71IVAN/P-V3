@@ -3,14 +3,13 @@
 {% load static %}
 
 {% comment %} Usando crispy {% endcomment %}
-
 {% block contents %}
                     <div class="container">
                         <div class="card">
                             <div class="card-body">
                                 <h2>Formulario de Terceros </h2>
                                 <hr>
-                                <form method="post" action="{% url 'SaveForm' %}" id="id-terceros">
+                                <form method="post" id="id_terceros_form" enctype="multipart/form-data">
                                     {% csrf_token %} 
                                     <div class="container">
                                         {% if messages %}
@@ -27,33 +26,75 @@
                                         <div class="form-group col-md-6 mb-0">
                                             {{ form.name|as_crispy_field }}
                                         </div>
-                                        <div class="form-group col-md-6 mb-0">
+                                        <div class="form-group col-md-6 mb-0"> 
                                             {{ form.email|as_crispy_field }}
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        {{ form.phone|as_crispy_field }}
-                                        {{ form.address|as_crispy_field }}
-                                    </div>
+
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-0">
-                                            {{ form.typeThird|as_crispy_field }}
+                                            {{ form.phone|as_crispy_field }}
                                         </div>
-                                        <div class="form-group col-md-6 mb-0">
-                                            {{ form.activo|as_crispy_field }}
-                                        </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="form-group col-md-6 mb-0">
                                             {{ form.identity_document|as_crispy_field }}
                                         </div>
-                                        <div class="form-group col-md-6 mb-0">
-                                            {{ form.description|as_crispy_field }}
-                                        </div>
-                                    </div> 
-                                    <button type="submit" class="btn btn-success" >Send</button>  
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success" id="btn_third" >Send</button>  
                                 </form>
                             </div>                                    
                         </div>
                     </div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script src="{% static 'js/third.js'%}"></script>
+
+
+
+{% block javascript %}
+        <script type="text/javascript">
+            let formSubmitted = false;
+            // Guardar registro
+ 
+                $('#id_terceros_form').on('submit', function (e) { 
+                //{% comment %} $('#id_terceros_form').on('click', function (e) { {% endcomment %}
+                    if(formSubmitted){
+                        e.preventDefault();
+                        return;
+                    }
+
+                    e.preventDefault();
+            
+                    let dataForm = new FormData($('#id_terceros_form')[0]);
+            
+                    // Realizar la solicitud ajax
+                    $.ajax({
+                        url: '{% url 'ViewsThird' %}' ,
+                        type: "POST",
+                        data: dataForm,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            console.log('Valores Success:', data);
+                            if (data.state) {
+                                message = 'success';
+                                $('#id_terceros_form')[0].reset();
+                            }
+                            else{
+                               message = 'error';
+                            }
+                            alert(data.message);
+
+                        },
+                        error: function(xhr,errmsg,err) {
+                            alert(errmsg + ' ' + err);
+                        }
+                        
+                    });
+                });
+            
+                
+        </script>
+
+{% endblock %}
 {% endblock %}

@@ -1,8 +1,6 @@
 from django.urls import path
-from terceros import views
-# from components import views
+from terceros.views import FormThirdViews
 
 urlpatterns = [
-    path('mostrar',views.SeeForm.as_view(),name="seeForm"),
-    path('guardarform',views.SaveForm.as_view(),name="SaveForm")
+    path('formthird/', FormThirdViews.as_view(), name="ViewsThird"),
 ]

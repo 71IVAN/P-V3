@@ -3,40 +3,34 @@ from django import forms
 
 class formUser(forms.ModelForm):
     first_name = forms.CharField(
-        help_text="ejm: Javier",
-        required=True,
-        widget=forms.TextInput(attrs={"placeholder": "primer nombre porfavore", 'id':'first_name' }),
+        help_text="ejm: Alexander Anderson",
+        # required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Primer nombre por favor", 'id':'first_name' }),
         label="Primer Nombre",
     )
     
     last_name = forms.CharField(
         help_text="ejm: Perez",
-        required=True,
-        widget=forms.TextInput(attrs={"placeholder": "apellidos", 'id':'last_name'}),
+        # required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Apellidos", 'id':'last_name'}),
     )
     
     email = forms.EmailField(
         help_text="ejm: javier4@example.com",
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "email", 'id':'email'}),
+        widget=forms.TextInput(attrs={"placeholder": "Email", 'id':'email'}),
     )
     
-    username = forms.CharField(
-        help_text="ejm: javier87",
-        required=True,
-        widget=forms.TextInput(attrs={"placeholder": "username", 'id':'username'}),
-    )
+    # username = forms.CharField(
+    #     # help_text="ejm: javier87",
+    #     required=True,
+    #     widget=forms.TextInput(attrs={"placeholder": "Username", 'id':'username'}),
+    # )
     
     is_active = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(attrs={"id":"is_active"}),
     )
-    
-    combo_field = forms.ComboField(fields=[first_name, last_name], 
-        required=False, 
-        label=("Nombre completo"),
-        widget=forms.TextInput(attrs={'id':'combo_field', 'placeholder':'nombre completo por favore'}),
-        )
     
     class Meta:
         model = User

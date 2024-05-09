@@ -7,7 +7,7 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
 from django.contrib import messages
-
+from django.http import JsonResponse
 
 class DashboardView(LoginRequiredMixin, FormView):
     template_name = 'dashboard/dashboard.html'
@@ -19,9 +19,9 @@ class FormUsersView(LoginRequiredMixin, FormView):
     form_class = formUser
     
 class FormUserPost(LoginRequiredMixin, FormView):
-    template_name = 'components/forms/components-formsuser.html'
+    # template_name = 'components/forms/components-formsuser.html'
     form_class = formUser
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('seeFormusers')
 
     def form_valid(self, form):
         first_name = form.cleaned_data['first_name']
@@ -42,8 +42,7 @@ class FormUserPost(LoginRequiredMixin, FormView):
         new_object.date_joined = date_joined_default
         new_object.save()
         
-        messages.success(self.request, 'Your form has been submitted successfully!')
-        print("Formulario guardado con exito")
+#        return JsonResponse({self.request, 'Your form has been submitted successfully!'})
 
         return super().form_valid(form)
     

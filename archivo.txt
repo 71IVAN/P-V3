@@ -1,0 +1,60 @@
+def post(self, request):
+        if utilities.is_ajax(request):
+            
+            id = request.POST.get('id')
+            if not id:
+                password = ''.join(secrets.choice(
+                    string.ascii_letters + string.digits) for i in range(10))
+                # crear avatar
+                
+                message = 'Usuario Nuevo ' + password + \
+                    ' name: ' + request.POST.get('first_name') + ' ' + request.POST.get('last_name') + ' email: ' + request.POST.get('email') + ' username: ' + request.POST.get('username') + ' Role: ' + request.POST.get('role_id')
+                state = True
+            else:
+                message = 'Usuario Antiguo'
+                state = False
+
+            data = {
+                    'state': state, 
+                    'message': message + ' activo' if request.POST.get('is_active') else message + ' inactivo'}
+            # else:
+            #     data = {'state': False, 'message': 'No válido', 'errors': form.errors}
+        else:
+            data = {'state': False, 'message': 'No es ajax'}
+
+        return JsonResponse(data)
+
+
+
+
+
+
+
+
+// Guardar registro
+        $('#formulary').on('submit', function (e) {
+            e.preventDefault();
+            let dataForm = new FormData($('#formulary')[0]);
+            $.ajax({
+                url: '{% url 'security-users' %}',
+                type: "POST",
+                data: dataForm,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log('Valores Success:', data);
+                    if (data.state) {
+                        color = 'success';
+                    }
+                    else
+                    {
+                        color = 'error';
+                    }
+                    RatiumJs.notifications(data.message, 'Ratium ERP', color);
+                },
+                error: function(xhr,errmsg,err) {
+                    RatiumJs.notifications(errmsg, 'Ratium ERP', 'error');
+                }
+            });
+        });

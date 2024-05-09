@@ -66,5 +66,6 @@ urlpatterns = [
     
     #appBootstrap
     path('appBootstrap/', include('appBootstrap.urls')),
+    
 ]
 
